@@ -1,0 +1,21 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: blue-deployment
+  template:
+    metadata:
+      labels:
+        app: blue-deployment
+    spec:
+      containers:
+      - name: blue-container
+        image: adamtravis/rollouts:blue
+        ports:
+        - name: http
+          containerPort: 8080
